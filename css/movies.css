@@ -34,3 +34,14 @@
 .movie-info {
     font-size: 12px;
 }
+.close {
+    color: #aaa;
+    float: left;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    cursor: pointer;
+}
