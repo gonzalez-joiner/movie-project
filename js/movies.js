@@ -23,14 +23,9 @@ function movies() {
 
 			$('span').click(function (e) {
 				e.preventDefault();
-
 				let id = $(e.target).attr('value');
-
 				console.log(id);
-
 				deleteMovie(id);
-
-
 			})
 
 			// var exitSpan = document.querySelector('.close');
