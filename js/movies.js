@@ -9,8 +9,9 @@ function movies() {
 			console.log(data);
 			let html = "";
 			for (let movie of data) {
-				html += `<div class="container card col-3 m-1 border border-danger">`;
+				html += `<div class="container card col-3 m-1 border border-danger" id="${movie.id}">`;
 				html += `<div class="card-body">`
+				html += `<span class="close" id="exit-${movie.id}" value="${movie.id}">&times;</span>`
 				html += `<h3 class="card-text">${movie.title}</h3>`
 				html += `<p class="card-text">Rating: ${movie.rating}</p>`
 				// html += `<p class="card-text">Director: ${movie.director}</p>`
@@ -18,10 +19,39 @@ function movies() {
 				html += `</div>`;
 			}
 			$('#movieList').html(html);
-			
-			
+
+			// var exitSpan = document.querySelector('.close');
+			//
+			// exitSpan.onclick = function () {
+			// 	console.log("clicked");
+			// };
+
+
 		})
+
+
+
 }
+
+
+function deleteMovie(id) {
+	fetch("https:fishy-exciting-fight.glitch.me/movies" + id, {
+		method: "DELETE"
+	})
+		.then(() => fetch("https:fishy-exciting-fight.glitch.me/movies")
+			.then(response => response.json())
+			.then(() => movies()))
+}
+$('span').click(function (e) {
+	e.preventDefault();
+	let id = $('span').val();
+	deleteMovie(id);
+})
+
+
+
+
+
 
 function addMovie(title, rating) {
 	// 	on sumbit grab value of text/selecor
@@ -45,6 +75,8 @@ function addMovie(title, rating) {
 $("#myBtn").click(function() {
 	addMovie();
 })
+
+movies();
 
 // console.log("Movie Title: " + data[0].title);
 // console.log("Director: " + data[0].director);
