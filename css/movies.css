@@ -28,6 +28,9 @@
 }
 
 .card {
-    margin: 1rem;
     border: 1px solid red
+}
+
+.movie-info {
+    font-size: 12px;
 }
