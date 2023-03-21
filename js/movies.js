@@ -20,6 +20,19 @@ function movies() {
 			}
 			$('#movieList').html(html);
 
+
+			$('span').click(function (e) {
+				e.preventDefault();
+
+				let id = $(e.target).attr('value');
+
+				console.log(id);
+
+				deleteMovie(id);
+
+
+			})
+
 			// var exitSpan = document.querySelector('.close');
 			//
 			// exitSpan.onclick = function () {
@@ -35,18 +48,26 @@ function movies() {
 
 
 function deleteMovie(id) {
-	fetch("https:fishy-exciting-fight.glitch.me/movies" + id, {
+	fetch("https:fishy-exciting-fight.glitch.me/movies/" + id, {
 		method: "DELETE"
 	})
 		.then(() => fetch("https:fishy-exciting-fight.glitch.me/movies")
 			.then(response => response.json())
 			.then(() => movies()))
 }
-$('span').click(function (e) {
-	e.preventDefault();
-	let id = $('span').val();
-	deleteMovie(id);
-})
+// $('span').click(function (e) {
+// 	e.preventDefault();
+//
+// 	let id = $(e.target).attr('value');
+//
+// 	deleteMovie(id);
+// })
+
+// var exitSpan = document.querySelector('.close');
+//
+// exitSpan.onclick = function () {
+// 	console.log("clicked");
+// };
 
 
 
