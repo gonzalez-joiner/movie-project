@@ -138,10 +138,25 @@ body {
 }
 
 .close:hover,
-.close:focus, .fa-xmark:hover, .fa-xmark:focus {
+.close:focus {
     color: #7b68ee;
     cursor: pointer;
 }
+.modal-x:hover, .modal.x:focus {
+    color: #931f1f;
+    cursor: pointer;
+}
+.pop {
+    color: black;
+    float: left;
+    font-size: 28px;
+    font-weight: bold;
+    position: relative;
+    bottom: 1.5rem;
+    right: 1rem;
+}
+
+
 
 .modal {
     display: none;
