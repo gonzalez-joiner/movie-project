@@ -23,6 +23,17 @@ function movies() {
 			$('#movieList').html(html);
 
 
+			let totalReviews = data[0].reviews.length;
+			let totalStart = 0;
+			for (let j = 0; j < data[0].reviews.length; j++) {
+			totalStart += parseInt(data[0].reviews[j].stars);
+			}
+
+
+			console.log(totalReviews);
+			console.log(totalStart);
+
+
 			$('span').click(function (e) {
 				e.preventDefault();
 				let id = $(e.target).attr('value');
