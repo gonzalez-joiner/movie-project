@@ -15,173 +15,70 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-	<div class="container-fluid">
-		<a class="navbar-brand" href="#">Navbar</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-		        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="#">Home</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Link</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-					   aria-expanded="false">
-						Dropdown
-					</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">Action</a></li>
-						<li><a class="dropdown-item" href="#">Another action</a></li>
-						<li>
-							<hr class="dropdown-divider">
-						</li>
-						<li><a class="dropdown-item" href="#">Something else here</a></li>
-					</ul>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link disabled">Disabled</a>
-				</li>
-			</ul>
-			<form class="d-flex" role="search">
-				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success" type="submit">Search</button>
-			</form>
-		</div>
+<nav class="navbar bg-body-tertiary">
+	<div class="container">
+		<a class="navbar-brand" href="#">
+			<img src="assets/imgs/movie-film-roll.svg" alt="Bootstrap" width="56" height="56">
+		</a>
 	</div>
 </nav>
 
+<div class="container-fluid">
+	<div class="lds-ring">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</div>
 
 <section class="main">
 	<div class="container-fluid">
+		<div class="d-flex justify-content-center">
+			<form class="row row-cols-lg-auto g-3 align-items-center">
+				<div class="col-12">
+					<input type="text" id="search" class="form-control" placeholder="Search for a movie">
+				</div>
+				<div class="col-12">
+					<button class="btn btn-primary" type="submit">Submit</button>
+				</div>
+			</form>
+		</div>
+		<br>
+		<br>
 		
-		<div>
-			<input type="text" id="search" placeholder="Search for a movie">
-			<button type="submit">Submit</button>
+		<div class="d-flex justify-content-center">
+			<form class="row row-cols-lg-auto g-3 align-items-center">
+				<div class="col-12">
+					<div class="input-group">
+						<input type="text" class="form-control" id="movieTitle" placeholder="Enter movie title">
+					</div>
+				</div>
+				<div class="col-12">
+					<select class="form-select" id="rating">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+					</select>
+				</div>
+				<div class="col-12">
+					<button class="btn btn-primary" type="submit" id="myBtn">Submit</button>
+				</div>
+			</form>
 		</div>
 		
 		<br>
 		<br>
-		
-		<div class="form-group">
-			<input class="form-control" type="text" id="movieTitle">
-			<select id="rating" class="form-control-select">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-			</select>
-			<button class="btn" type="submit" id="myBtn">Submit</button>
-		</div>
 		
 		<div class="row justify-content-around" id="movieList"></div>
-		
-		
-<!--		<section class="main container-fluid">-->
-<!--			-->
-<!--&lt;!&ndash;			<div class="loader container"></div>&ndash;&gt;-->
-<!--			-->
-<!--			<div class="body border border-primary">-->
-<!--				-->
-<!--				-->
-<!--				&lt;!&ndash;	Body&ndash;&gt;-->
-<!--				<hr>-->
-<!--				<div class="body row border border-primary">-->
-<!--					<div class="card col-3">-->
-<!--						<img src="https://placekitten.com/640/360" class="card-img-top" alt="...">-->
-<!--						<div class="card-body row d-flex flex-column">-->
-<!--							<h5 class="card-title">Cats</h5>-->
-<!--							<div class="row">-->
-<!--								<span class="movie-year col-6"> 2023</span>-->
-<!--								<span class="movie-rating d-flex justify-content-end col-6">Rating: 9/10</span>-->
-<!--							</div>-->
-<!--							<p class="movie-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium-->
-<!--								autem-->
-<!--								blanditiis eius et eum excepturi, explicabo, ipsam itaque iure maxime nisi nostrum nulla-->
-<!--								odio-->
-<!--								optio porro veritatis vero? Enim, iusto!</p>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--					<hr>-->
-<!--					<div class="row d-flex justify-content-evenly">-->
-<!--						-->
-<!--						<div class="col-sm-6 col-md-3">-->
-<!--							<div class="card mb-3">-->
-<!--								<div class="card-body">-->
-<!--								-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--						<div class="col-sm-6 col-md-3">-->
-<!--							<div class="card mb-3">-->
-<!--								<div class="card-body">-->
-<!--								-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--						<div class="col-sm-6 col-md-3">-->
-<!--							<div class="card mb-3">-->
-<!--								<div class="card-body">-->
-<!--								-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--						<div class="col-sm-6 col-md-3">-->
-<!--							<div class="card mb-3">-->
-<!--								<div class="card-body">-->
-<!--								-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--					<hr>-->
-<!--					<div class=" card-group container row justify-content-around">-->
-<!--						-->
-<!--						<div class="card col-3">-->
-<!--							<img src="https://placekitten.com/640/360-->
-<!--		" class="card-img-top" alt="...">-->
-<!--							<div class="card-body">-->
-<!--								<p class="card-text"> Movie Title</p>-->
-<!--								<p>Rating: 3/5</p>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--						-->
-<!--						<div class="card col-3">-->
-<!--							<img src="https://placekitten.com/640/360-->
-<!--		" class="card-img-top" alt="...">-->
-<!--							<div class="card-body">-->
-<!--								<p class="card-text"> Movie Title</p>-->
-<!--								<p>Rating: 3/5</p>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--						-->
-<!--						<div class="card col-3">-->
-<!--							<img src="https://placekitten.com/640/360-->
-<!--		" class="card-img-top" alt="...">-->
-<!--							<div class="card-body">-->
-<!--								<p class="card-text"> Movie Title</p>-->
-<!--								<p>Rating: 3/5</p>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--						-->
-<!--						<div class="card col-3">-->
-<!--							<img src="https://placekitten.com/640/360-->
-<!--		" class="card-img-top" alt="...">-->
-<!--							<div class="card-body">-->
-<!--								<p class="card-text"> Movie Title</p>-->
-<!--								<p>Rating: 3/5</p>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--		</section>-->
+	
 	</div>
 </section>
 
