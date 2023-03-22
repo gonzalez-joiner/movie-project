@@ -51,13 +51,20 @@ function movies() {
 				// html += `<p class="card-text">Rating: ${averageStars}</p>`
 				
 				
-				html += `<div class="d-flex justify-content-between"><p>${movie.genre}</p>  <a href="#"  id="edit" class="btn btn-outline-light"><i class="fa-regular fa-pen-to-square"></i></a> </div>`
+				html += `<div class="d-flex justify-content-between"><p>${movie.genre}</p>  <a href="#"  id="edit-${movie.id}" class="btn btn-outline-light edit-btn"><i class="fa-regular fa-pen-to-square"></i></a> </div>`
 				
 				// html += `<p class="card-text">Director: ${movie.director}</p>`
 				html += `</div>`;
 				html += `</div>`;
 				html += `</div>`;
-				
+
+				let editHTML = '';
+				editHTML += `<div>`;
+				editHTML += `<p>${movie.description}</p>`;
+				editHTML += `</div>`
+
+				$('#edit-div').html(editHTML);
+
 				totalReviews = 0
 				totalStars = 0
 				averageStars = 0
@@ -70,12 +77,20 @@ function movies() {
 				console.log(id);
 				deleteMovie(id);
 			});
-			
-			
-			$("#edit").click(function (e){
-				e.preventDefault()
+
+			$('.edit-btn').click(function(e) {
+				e.preventDefault();
+				const id = $(this).attr('id').split('-')[1];
+				console.log(`this is the id: ${id}`);
 				$("#editModal").css("display", "block");
-			})
+			});
+			// $(`#edit-${data.id}`).click(function(e) {
+			// 	e.preventDefault();
+			// 	console.log("clicked");
+			// 	// const id = $(this).attr('id').split('-')[1];
+			// 	console.log(`Edit movie with id`);
+			// 	$("#editModal").css("display", "block");
+			// });
 			
 			
 		}).then(() => $(".loader").toggleClass("hidden"));
