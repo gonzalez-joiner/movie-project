@@ -58,12 +58,7 @@ function movies() {
 				html += `</div>`;
 				html += `</div>`;
 
-				let editHTML = '';
-				editHTML += `<div>`;
-				editHTML += `<p>${movie.description}</p>`;
-				editHTML += `</div>`
 
-				$('#edit-div').html(editHTML);
 
 				totalReviews = 0
 				totalStars = 0
@@ -81,7 +76,11 @@ function movies() {
 			$('.edit-btn').click(function(e) {
 				e.preventDefault();
 				const id = $(this).attr('id').split('-')[1];
-				console.log(`this is the id: ${id}`);
+				let editHTML = '';
+				editHTML += `<div>`;
+				editHTML += `<p>${data[id - 1].description}</p>`;
+				editHTML += `</div>`;
+				$('#edit-div').html(editHTML);
 				$("#editModal").css("display", "block");
 			});
 			// $(`#edit-${data.id}`).click(function(e) {
