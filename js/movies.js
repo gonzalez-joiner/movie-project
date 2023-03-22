@@ -21,10 +21,12 @@ function movies() {
 				html += `<div class="container card" id="${movie.id}">`;
 				
 				html += `<span class=" deleteSpan close" id="exit-${movie.id}" value="${movie.id}"><i class="fa-solid fa-xmark"></i></span>`
-				html += `<img class="card-img-top" src="../assets/imgs/movie-poster.svg">`
+				
+				
+				html += `<img class="card-img-top posters" src="${movie.image}">`
 				
 				html += `<div class="card-body">`
-				html += `<h3 class="card-text fs-5">${movie.title}</h3>`
+				html += `<h3 class="card-text fs-6">${movie.title}</h3>`
 				
 				
 				let totalReviews = movie.reviews.length;
@@ -252,45 +254,21 @@ function deleteMovie(idDelete) {
 function addMovie(title, rating) {
 	let newMovie = {
 		title: $("#movieTitle").val(),
-		director : " ",
+		director : $("#directorName").val(),
 		genre: $("#genreSelect").val(),
-		rating : " ",
+		rating : $("#ratingSelect").val(),
 		avgStars: "0",
 		reviews: [{
 			stars: $(".star-wrap").attr("value")
-		}]
+		}],
+		image : "https://cdn.glitch.global/97ab1453-f424-4aa9-bc6d-b2449a7c5714/0787261a-9df0-4f4e-bd68-d03121bf88de.image.png?v=1679524147776",
+		
 	}
-	
-	/*    {
-      "title": "Pulp Fiction",
-      "director": "Quentin Tarantino",
-      "rating": "R",
-      "genre": "action",
-      "avgStars": "5",
-      "id": 1,
-      "description": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-      "reviews": [
-        {
-          "user": "Cody",
-          "stars": "5",
-          "comment": "This is a really good Movie. Quack!"
-        },
-        {
-          "user": "Austin",
-          "stars": "5",
-          "comment": "Awesome Movie!"
-        },{
-          "user" : "Oscar",
-          "stars": "5",
-          "comment": "Amazing Movie!"
-        }
-      ]
-    }*/
 	
 	console.log($("#movieTitle").val());
 	console.log($(".star-wrap").attr("value"));
-	
 	console.log(newMovie);
+	
 	fetch("https:fishy-exciting-fight.glitch.me/movies", {
 		method: "POST",
 		headers: {
