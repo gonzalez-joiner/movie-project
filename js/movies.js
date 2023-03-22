@@ -78,18 +78,37 @@ function movies() {
 				const id = $(this).attr('id').split('-')[1];
 				let editHTML = '';
 				editHTML += `<div>`;
-				editHTML += `<p>${data[id - 1].description}</p>`;
+				// editHTML += `<p>${data[id - 1].description}</p>`;
+				editHTML += `<div className="mb-3">
+					<label  className="form-label">Movie Title</label>
+					<input className="form-control" type="text" id="" placeholder="${data[id -1].title}" disabled>
+				</div>`;
+				editHTML +=
+				`<div className="mb-3">
+					<label htmlFor="" className="form-label">director</label>
+					<input className="form-control" type="text"  id="" placeholder="${data[id-1].director}">
+				</div>`;
+				editHTML +=
+				`<div className="mb-3">
+					<label htmlFor="" className="form-label">rating</label>
+					<input className="form-control" type="text" id="" placeholder="${data[id-1].rating}">
+				</div>`;
+				editHTML +=
+				`<div className="mb-3">
+					<label htmlFor="formFileSm" className="form-label">genre</label>
+					<input className="form-control form-control-sm" id="" type="text" placeholder="${data[id-1].genre}">
+				</div>`;
+
+				editHTML += `<div>
+					<label htmlFor="formFileLg" className="form-label">Description</label>
+					<textarea className="form-control form-control-lg " id="" type="text" placeholder="${data[id-1].description}"></textarea>
+				</div>`;
+				editHTML += `<button class="btn btn-primary" type="submit" id="saveBtn">Save</button>`;
 				editHTML += `</div>`;
 				$('#edit-div').html(editHTML);
 				$("#editModal").css("display", "block");
 			});
-			// $(`#edit-${data.id}`).click(function(e) {
-			// 	e.preventDefault();
-			// 	console.log("clicked");
-			// 	// const id = $(this).attr('id').split('-')[1];
-			// 	console.log(`Edit movie with id`);
-			// 	$("#editModal").css("display", "block");
-			// });
+
 			
 			
 		}).then(() => $(".loader").toggleClass("hidden"));
