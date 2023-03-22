@@ -23,6 +23,19 @@ function movies() {
 			$('#movieList').html(html);
 
 
+			let totalReviews = data[0].reviews.length;
+			let totalStars = 0;
+			for (let j = 0; j < data[0].reviews.length; j++) {
+			totalStars += parseInt(data[0].reviews[j].stars);
+			}
+
+			var averageStars = totalStars/totalReviews;
+
+			console.log(totalReviews);
+			console.log(totalStars);
+			console.log(averageStars);
+
+
 			$('span').click(function (e) {
 				e.preventDefault();
 				let id = $(e.target).attr('value');
