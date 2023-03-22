@@ -64,16 +64,17 @@ body {
     border: 1px solid rgb(255 255 255/ 5%);
     border-radius: 1.5rem;
     padding: 1rem;
+    height: 650px!important;
 
 }
 
 .card:after {
     content: "";
-    height: 500px;
+    height: 600px;
     width: 3px;
     position: absolute;
     left: -1px;
-    top: 40%;
+    top: 30%;
     transition: top, opacity;
     transition-duration: 600ms;
     transition-timing-function: ease;
@@ -86,12 +87,12 @@ body {
 }
 
 .card:after {
-    top: 40%;
+    top: 30%;
     opacity: 0;
 }
 
 .card:hover:after {
-    top: 95%;
+    top: 15%;
     opacity: 1;
 }
 
@@ -165,4 +166,8 @@ body {
 .star-wrap {
     display: flex;
     justify-content: center;
+}
+
+.posters {
+    height: 450px !important;
 }

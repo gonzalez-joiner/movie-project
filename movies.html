@@ -64,18 +64,31 @@
 					<div class="modal-content">
 						<div class="pop"><i class="fa-solid fa-xmark modal-x"></i></div>
 						<div class="modal-body">
-							<div class="input-group">
+							
+							<div class="input-group mb-2">
 								<input type="text" class="form-control" id="movieTitle"
-								       placeholder="Enter movie title">
+								       placeholder="Title:">
 							</div>
 							
-							<select class="form-select" id="genreSelect">
+							<div class="input-group mb-2">
+								<input type="text" class="form-control" id="directorName" placeholder="Director:">
+							</div>
+							
+							<select class="form-select mb-2" id="genreSelect">
 								<option selected>Choose a genre</option>
 								<option value="horror">Horror</option>
 								<option value="action">Action</option>
 								<option value="romance">Romance</option>
 								<option value="thriller">Thriller</option>
 								<option value="comedy">Comedy</option>
+							</select>
+							
+							<select class="form-select mb-2" id="ratingSelect">
+								<option selected>Select a rating</option>
+								<option value="G">G</option>
+								<option value="PG">PG</option>
+								<option value="PG-13">PG-13</option>
+								<option value="R">R</option>
 							</select>
 							
 							<div class="star-wrap">
