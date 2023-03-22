@@ -133,8 +133,7 @@ body {
     font-size: 28px;
     font-weight: bold;
     position: relative;
-    bottom: 2rem;
-    right: 1.5rem;
+    bottom: .8rem;
 }
 
 .close:hover,
