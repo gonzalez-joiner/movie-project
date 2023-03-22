@@ -14,10 +14,13 @@ function movies() {
 			console.log(data);
 			let html = "";
 			for (let movie of data) {
-				html += `<div class=" col-6 col-md-3">`
+				html += `<div class=" col-12 col-sm-6 col-md-3">`
 				html += `<div class="container card" id="${movie.id}">`;
-				html += `<div class="card-body">`
+				
 				html += `<span class="close" id="exit-${movie.id}" value="${movie.id}"><i class="fa-solid fa-xmark"></i></span>`
+				html += `<img class="card-img-top" src="../assets/imgs/movie-poster.svg">`
+				
+				html += `<div class="card-body">`
 				html += `<h3 class="card-text fs-5">${movie.title}</h3>`
 				
 				
@@ -30,7 +33,25 @@ function movies() {
 				console.log(averageStars);
 				
 				
-				html += `<p class="card-text">Rating: ${averageStars}</p>`
+				// empty star <i class="fa-regular fa-star"></i>
+				// filled star <i class="fa-solid fa-star"></i>
+				if (averageStars === 1){
+					html += `<p class="card-text">Rating: <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
+				} else if (averageStars === 2) {
+					html += `<p class="card-text">Rating: <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
+				} else if (averageStars === 3) {
+					html += `<p class="card-text">Rating: <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i>`
+				} else if (averageStars === 4) {
+					html += `<p class="card-text">Rating: <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i>`
+				} else if (averageStars === 5) {
+					html += `<p class="card-text">Rating: <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i>`
+				}
+				
+				
+				// html += `<p class="card-text">Rating: ${averageStars}</p>`
+				
+				
+				html += `<div class="d-flex justify-content-between"><p>${movie.genre}</p>  <a href="#"  id="edit" class="btn btn-outline-light"><i class="fa-regular fa-pen-to-square"></i></a> </div>`
 				
 				// html += `<p class="card-text">Director: ${movie.director}</p>`
 				html += `</div>`;
@@ -49,6 +70,14 @@ function movies() {
 				console.log(id);
 				deleteMovie(id);
 			});
+			
+			
+			$("#edit").click(function (e){
+				e.preventDefault()
+				$("#editModal").css("display", "block");
+			})
+			
+			
 		}).then(() => $(".loader").toggleClass("hidden"));
 	// },5000)
 
@@ -140,6 +169,7 @@ function deleteMovie(id) {
 function addMovie(title, rating) {
 	let newMovie = {
 		title: $("#movieTitle").val(),
+		genre: $("#genreSelect").val(),
 		avgStars: "0",
 		reviews: [{
 			stars: $(".star-wrap").attr("value")
@@ -164,10 +194,12 @@ function addMovie(title, rating) {
 			.then(() => movies()));
 }
 
+var modal = document.getElementById("myModal");
 $("#myBtn").click(function (e) {
 	e.preventDefault();
 	// modal.style.display = "hidden";
 	addMovie();
+	modal.style.display = "none";
 })
 
 movies();
