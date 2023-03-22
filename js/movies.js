@@ -39,15 +39,15 @@ function movies() {
 				// empty star <i class="fa-regular fa-star"></i>
 				// filled star <i class="fa-solid fa-star"></i>
 				if (averageStars === 1) {
-					html += `<p class="card-text">Rating: <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
+					html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
 				} else if (averageStars === 2) {
-					html += `<p class="card-text">Rating: <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
+					html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
 				} else if (averageStars === 3) {
-					html += `<p class="card-text">Rating: <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i>`
+					html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i>`
 				} else if (averageStars === 4) {
-					html += `<p class="card-text">Rating: <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i>`
+					html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i>`
 				} else if (averageStars === 5) {
-					html += `<p class="card-text">Rating: <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i>`
+					html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i>`
 				}
 				
 				
@@ -86,7 +86,7 @@ function movies() {
 				// editHTML += `<p>${data[id - 1].description}</p>`;
 				editHTML += `<div class="mb-3">
 					<label  class="form-label">Movie Title</label>
-					<input class="form-control" type="text" id="editMovie" value="${data[id - 1].title}">
+					<input class="form-control" type="text" id="editMovie" value="${data[id - 1].title}" disabled>
 				</div>`;
 				editHTML +=
 					`<div class="mb-3">
@@ -215,15 +215,41 @@ function deleteMovie(id) {
 function addMovie(title, rating) {
 	let newMovie = {
 		title: $("#movieTitle").val(),
+		director : " ",
 		genre: $("#genreSelect").val(),
+		rating : " ",
 		avgStars: "0",
 		reviews: [{
 			stars: $(".star-wrap").attr("value")
-			
 		}]
-		
-		
 	}
+	
+	/*    {
+      "title": "Pulp Fiction",
+      "director": "Quentin Tarantino",
+      "rating": "R",
+      "genre": "action",
+      "avgStars": "5",
+      "id": 1,
+      "description": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+      "reviews": [
+        {
+          "user": "Cody",
+          "stars": "5",
+          "comment": "This is a really good Movie. Quack!"
+        },
+        {
+          "user": "Austin",
+          "stars": "5",
+          "comment": "Awesome Movie!"
+        },{
+          "user" : "Oscar",
+          "stars": "5",
+          "comment": "Amazing Movie!"
+        }
+      ]
+    }*/
+	
 	console.log($("#movieTitle").val());
 	console.log($(".star-wrap").attr("value"));
 	
