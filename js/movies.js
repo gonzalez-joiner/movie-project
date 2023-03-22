@@ -24,14 +24,16 @@ function movies() {
 
 
 			let totalReviews = data[0].reviews.length;
-			let totalStart = 0;
+			let totalStars = 0;
 			for (let j = 0; j < data[0].reviews.length; j++) {
-			totalStart += parseInt(data[0].reviews[j].stars);
+			totalStars += parseInt(data[0].reviews[j].stars);
 			}
 
+			var averageStars = totalStars/totalReviews;
 
 			console.log(totalReviews);
-			console.log(totalStart);
+			console.log(totalStars);
+			console.log(averageStars);
 
 
 			$('span').click(function (e) {
