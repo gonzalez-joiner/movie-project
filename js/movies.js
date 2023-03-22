@@ -9,12 +9,14 @@ function movies() {
 			console.log(data);
 			let html = "";
 			for (let movie of data) {
-				html += `<div class="container card col-3 m-1" id="${movie.id}">`;
+				html += `<div class="col-3">`
+				html += `<div class="container card" id="${movie.id}">`;
 				html += `<div class="card-body">`
 				html += `<span class="close" id="exit-${movie.id}" value="${movie.id}">&times;</span>`
-				html += `<h3 class="card-text">${movie.title}</h3>`
-				html += `<p class="card-text">Rating: ${movie.rating}</p>`
+				html += `<h3 class="card-text fs-5">${movie.title}</h3>`
+				html += `<p class="card-text">Rating: ${movie.avgStars}</p>`
 				// html += `<p class="card-text">Director: ${movie.director}</p>`
+				html += `</div>`;
 				html += `</div>`;
 				html += `</div>`;
 			}
