@@ -99,23 +99,32 @@ function movies() {
 				editHTML +=
 					`<div class="mb-3">
 					<label class="form-label">rating</label>
-					<input class="form-control" type="text" id="" placeholder="${data[id - 1].rating}">
+					<input class="form-control" type="text" id="editRating" value="${data[id - 1].rating}">
 				</div>`;
 				editHTML +=
 					`<div class="mb-3">
 					<label class="form-label">genre</label>
-					<input class="form-control form-control-sm" id="editGenre" type="text" placeholder="${data[id - 1].genre}">
+					<input class="form-control form-control-sm" id="editGenre" type="text" value="${data[id - 1].genre}">
 				</div>`;
 				
 				editHTML += `<div>
 					<label class="form-label">Description</label>
-					<textarea class="form-control form-control-lg " id="" type="text" placeholder="${data[id - 1].description}"></textarea>
+					<textarea class="form-control form-control-lg " id="editDescription" type="text" placeholder="${data[id - 1].description}" value ="${data[id - 1].description}"></textarea>
 				</div>`;
 				editHTML += `<input type="hidden" id="hiddenId" value="${data[id - 1].id}">
 <button class="btn btn-primary" type="submit" id="saveBtn">Save</button>`;
 				editHTML += `</div>`;
 				$('#edit-div').html(editHTML);
 				$("#editModal").css("display", "block");
+
+
+				$("#saveBtn").click(function (e) {
+					e.preventDefault();
+					let id = $("#hiddenId").val();
+					console.log(id)
+					editMovie(id);
+				});
+
 
 				// edit close button
 				$("#editBtn").click(function (e) {
@@ -130,16 +139,7 @@ function movies() {
 			}
 
 
-				$("#saveBtn").click(function (e) {
-					e.preventDefault();
-					let id = $("#hiddenId").val();
-					console.log(id)
-					editMovie(id);
 
-
-
-
-			});
 
 
 
@@ -296,7 +296,9 @@ function editMovie(id) {
 	let editedMovie = {
 		title: $("#editMovie").val(),
 		director : $("#editDirector").val(),
-		genre: $("#editGenre").val()
+		genre: $("#editGenre").val(),
+		rating: $("#editRating").val(),
+		description: $("#editDescription").val()
 	}
 	
 	// console.log(id);
@@ -306,9 +308,8 @@ function editMovie(id) {
 		headers: {"Content-type": "application/json"},
 		body: JSON.stringify(editedMovie)
 	}).then(response => {
-		console.log(response.status);
 		return response.json();
-	}).then(() => movies());
+	}).then(data => console.log(data)).then(() => movies());
 }
 
 
