@@ -15,17 +15,18 @@ function movies() {
 				html += `<span class="close" id="exit-${movie.id}" value="${movie.id}">&times;</span>`
 				html += `<h3 class="card-text fs-5">${movie.title}</h3>`
 				
-				
+
 				let totalReviews = movie.reviews.length;
 				let totalStars = 0;
 				for (let j = 0; j < movie.reviews.length; j++) {
 					totalStars += parseInt(movie.reviews[j].stars);
 				}
 				let averageStars = totalStars / totalReviews;
-				// console.log(averageStars);
+				console.log(averageStars);
 				
 				
 				html += `<p class="card-text">Rating: ${averageStars}</p>`
+
 				// html += `<p class="card-text">Director: ${movie.director}</p>`
 				html += `</div>`;
 				html += `</div>`;
@@ -44,6 +45,64 @@ function movies() {
 				deleteMovie(id);
 			});
 		});
+
+
+///////////////////////
+///////////////////////
+///////////////////////adding stars to modal
+	var starOne = document.getElementById('star1');
+	var starTwo = document.getElementById('star2');
+	var starThree = document.getElementById('star3');
+	var starFour = document.getElementById('star4');
+	var starFive = document.getElementById('star5');
+
+	starOne.onclick = function() {
+		starOne.style.color = "yellow";
+		starTwo.style.color = "white";
+		starThree.style.color = "white";
+		starFour.style.color = "white";
+		starFive.style.color = "white";
+	}
+	starTwo.onclick = function() {
+		starOne.style.color = "yellow";
+		starTwo.style.color = "yellow";
+		starThree.style.color = "white";
+		starFour.style.color = "white";
+		starFive.style.color = "white";
+	}
+	starThree.onclick = function() {
+		starOne.style.color = "yellow";
+		starTwo.style.color = "yellow";
+		starThree.style.color = "yellow";
+		starFour.style.color = "white";
+		starFive.style.color = "white";
+	}
+	starFour.onclick = function() {
+		starOne.style.color = "yellow";
+		starTwo.style.color = "yellow";
+		starThree.style.color = "yellow";
+		starFour.style.color = "yellow";
+		starFive.style.color = "white";
+	}
+	starFive.onclick = function() {
+		starOne.style.color = "yellow";
+		starTwo.style.color = "yellow";
+		starThree.style.color = "yellow";
+		starFour.style.color = "yellow";
+		starFive.style.color = "yellow";
+	}
+
+
+	// added modal pop up for adding a movie
+	var modal = document.getElementById("myModal");
+	var btn = document.getElementById("myBtn1");
+
+	btn.onclick = function() {
+		modal.style.display = "block";
+	}
+	////////////////////////////////////////////
+	////////////////////////////////////////////
+	////////////////////////////////////////////
 }
 
 function deleteMovie(id) {
