@@ -21,10 +21,10 @@ function movies() {
 				for (let j = 0; j < movie.reviews.length; j++) {
 					totalStars += parseInt(movie.reviews[j].stars);
 				}
-				let averageStars = totalStars / totalReviews;
+				let averageStars = parseInt(Math.floor(totalStars / totalReviews));
 				console.log(averageStars);
-				
-				
+
+
 				html += `<p class="card-text">Rating: ${averageStars}</p>`
 
 				// html += `<p class="card-text">Director: ${movie.director}</p>`
@@ -62,6 +62,7 @@ function movies() {
 		starThree.style.color = "white";
 		starFour.style.color = "white";
 		starFive.style.color = "white";
+		$(".star-wrap").attr("value", "1")
 	}
 	starTwo.onclick = function() {
 		starOne.style.color = "yellow";
@@ -69,6 +70,7 @@ function movies() {
 		starThree.style.color = "white";
 		starFour.style.color = "white";
 		starFive.style.color = "white";
+		$(".star-wrap").attr("value", "2")
 	}
 	starThree.onclick = function() {
 		starOne.style.color = "yellow";
@@ -76,6 +78,7 @@ function movies() {
 		starThree.style.color = "yellow";
 		starFour.style.color = "white";
 		starFive.style.color = "white";
+		$(".star-wrap").attr("value", "3")
 	}
 	starFour.onclick = function() {
 		starOne.style.color = "yellow";
@@ -83,6 +86,7 @@ function movies() {
 		starThree.style.color = "yellow";
 		starFour.style.color = "yellow";
 		starFive.style.color = "white";
+		$(".star-wrap").attr("value", "4")
 	}
 	starFive.onclick = function() {
 		starOne.style.color = "yellow";
@@ -90,6 +94,7 @@ function movies() {
 		starThree.style.color = "yellow";
 		starFour.style.color = "yellow";
 		starFive.style.color = "yellow";
+		$(".star-wrap").attr("value", "5")
 	}
 
 
@@ -97,7 +102,8 @@ function movies() {
 	var modal = document.getElementById("myModal");
 	var btn = document.getElementById("myBtn1");
 
-	btn.onclick = function() {
+	btn.onclick = function(e) {
+		e.preventDefault();
 		modal.style.display = "block";
 	}
 	////////////////////////////////////////////
@@ -117,9 +123,18 @@ function deleteMovie(id) {
 function addMovie(title, rating) {
 	let newMovie = {
 		title: $("#movieTitle").val(),
-		rating: $("#rating").val()
+		avgStars: "0",
+		reviews : [{
+			stars: $(".star-wrap").attr("value")
+
+		}]
+
+
 	}
-	
+	console.log($("#movieTitle").val());
+	console.log($(".star-wrap").attr("value"));
+
+	console.log(newMovie);
 	fetch("https:fishy-exciting-fight.glitch.me/movies", {
 		method: "POST",
 		headers: {
@@ -132,7 +147,9 @@ function addMovie(title, rating) {
 			.then(() => movies()));
 }
 
-$("#myBtn").click(function () {
+$("#myBtn").click(function (e) {
+	e.preventDefault();
+	// modal.style.display = "hidden";
 	addMovie();
 })
 
