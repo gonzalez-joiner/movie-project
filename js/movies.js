@@ -1,15 +1,18 @@
 // https://fishy-exciting-fight.glitch.me/movies
 
 
+let globalData;
+
 function movies() {
 	
 	$(".loader").toggleClass("hidden")
 	
-	// setTimeout(() => {
+	setTimeout(() => {
 	
 	fetch("https://fishy-exciting-fight.glitch.me/movies")
 		.then(response => response.json())
 		.then(data => {
+			globalData = data;
 			console.log("All Data: ");
 			console.log(data);
 			let html = "";
@@ -35,7 +38,7 @@ function movies() {
 				
 				// empty star <i class="fa-regular fa-star"></i>
 				// filled star <i class="fa-solid fa-star"></i>
-				if (averageStars === 1){
+				if (averageStars === 1) {
 					html += `<p class="card-text">Rating: <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
 				} else if (averageStars === 2) {
 					html += `<p class="card-text">Rating: <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
@@ -57,13 +60,12 @@ function movies() {
 				html += `</div>`;
 				html += `</div>`;
 				html += `</div>`;
-
-
-
+				
 				totalReviews = 0
 				totalStars = 0
 				averageStars = 0
 			}
+			
 			$('#movieList').html(html);
 			
 			$('span').click(function (e) {
@@ -72,47 +74,58 @@ function movies() {
 				console.log(id);
 				deleteMovie(id);
 			});
-
-			$('.edit-btn').click(function(e) {
+			
+			$('.edit-btn').click(function (e) {
 				e.preventDefault();
-				const id = $(this).attr('id').split('-')[1];
+				const id = $(this).attr('id').split('-')[1]; // [edit [0], 1 [1]] id = [1]
+				
+				testId = id;
+				
 				let editHTML = '';
 				editHTML += `<div>`;
 				// editHTML += `<p>${data[id - 1].description}</p>`;
-				editHTML += `<div className="mb-3">
-					<label  className="form-label">Movie Title</label>
-					<input className="form-control" type="text" id="" placeholder="${data[id -1].title}" disabled>
+				editHTML += `<div class="mb-3">
+					<label  class="form-label">Movie Title</label>
+					<input class="form-control" type="text" id="editMovie" value="${data[id - 1].title}">
 				</div>`;
 				editHTML +=
-				`<div className="mb-3">
-					<label htmlFor="" className="form-label">director</label>
-					<input className="form-control" type="text"  id="" placeholder="${data[id-1].director}">
+					`<div class="mb-3">
+					<label class="form-label">director</label>
+					<input class="form-control" type="text"  id="editDirector" value="${data[id - 1].director}">
 				</div>`;
 				editHTML +=
-				`<div className="mb-3">
-					<label htmlFor="" className="form-label">rating</label>
-					<input className="form-control" type="text" id="" placeholder="${data[id-1].rating}">
+					`<div class="mb-3">
+					<label class="form-label">rating</label>
+					<input class="form-control" type="text" id="" placeholder="${data[id - 1].rating}">
 				</div>`;
 				editHTML +=
-				`<div className="mb-3">
-					<label htmlFor="formFileSm" className="form-label">genre</label>
-					<input className="form-control form-control-sm" id="" type="text" placeholder="${data[id-1].genre}">
+					`<div class="mb-3">
+					<label class="form-label">genre</label>
+					<input class="form-control form-control-sm" id="editGenre" type="text" placeholder="${data[id - 1].genre}">
 				</div>`;
-
+				
 				editHTML += `<div>
-					<label htmlFor="formFileLg" className="form-label">Description</label>
-					<textarea className="form-control form-control-lg " id="" type="text" placeholder="${data[id-1].description}"></textarea>
+					<label class="form-label">Description</label>
+					<textarea class="form-control form-control-lg " id="" type="text" placeholder="${data[id - 1].description}"></textarea>
 				</div>`;
-				editHTML += `<button class="btn btn-primary" type="submit" id="saveBtn">Save</button>`;
+				editHTML += `<input type="hidden" id="hiddenId" value="${data[id - 1].id}">
+<button class="btn btn-primary" type="submit" id="saveBtn">Save</button>`;
 				editHTML += `</div>`;
 				$('#edit-div').html(editHTML);
 				$("#editModal").css("display", "block");
+				
+				
+				$("#saveBtn").click(function (e) {
+					e.preventDefault();
+					let id = $("#hiddenId").val();
+					console.log(id)
+					editMovie(id);
+				});
 			});
-
 			
 			
 		}).then(() => $(".loader").toggleClass("hidden"));
-	// },5000)
+	},3000)
 
 
 ///////////////////////
@@ -238,6 +251,24 @@ $("#myBtn").click(function (e) {
 movies();
 
 
+function editMovie(id) {
+	let editedMovie = {
+		title: $("#editMovie").val(),
+		director : $("#editDirector").val(),
+		genre: $("#editGenre").val()
+	}
+	
+	// console.log(id);
+	
+	fetch("https://fishy-exciting-fight.glitch.me/movies/" + id, {
+		method: "PATCH",
+		headers: {"Content-type": "application/json"},
+		body: JSON.stringify(editedMovie)
+	}).then(response => {
+		console.log(response.status);
+		return response.json();
+	}).then(() => movies());
+}
 
 
 
