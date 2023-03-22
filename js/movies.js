@@ -121,6 +121,11 @@ function movies() {
 					modalEdit.style.display = "none";
 				})
 			});
+			window.onclick = function (event) {
+			if (event.target == modalEdit) {
+				modalEdit.style.display = "none";
+				}
+			}
 
 
 				$("#saveBtn").click(function (e) {
