@@ -10,6 +10,9 @@
 	<!--jQuery-->
 	<script src="js/jquery-3.6.4.js"></script>
 	
+	<!--FontAwsome-->
+	<script src="https://kit.fontawesome.com/94186186be.js" crossorigin="anonymous"></script>
+	
 	<!--CSS-->
 	<link rel="stylesheet" href="css/movies.css">
 </head>
@@ -23,7 +26,7 @@
 	</div>
 </nav>
 
-<div class="container-fluid">
+<div class="loader container-fluid hidden">
 	<div class="lds-ring">
 		<div></div>
 		<div></div>
@@ -48,47 +51,34 @@
 		<br>
 		
 		<div class="d-flex justify-content-center">
-			<form class="row row-cols-lg-auto g-3 align-items-center">
+			<div class="row row-cols-lg-auto g-3 align-items-center">
 				<div class="col-12">
-
+					<button class="btn btn-primary" type="submit" id="myBtn1">Add A Movie
+					</button>
 				</div>
-				<div class="col-12">
-
-
-
-
-		<!--						-->
-		<!--						-->
-		<!--			Added MODAL WITH STARS			-->
-		<!--						-->
-		<!--						-->
-					<button class="btn btn-primary" type="submit" id="myBtn1">Add</button>
-				</div>
+				
 				<div id="myModal" class="modal">
-					<div class="modal-content">
-						<div class="input-group">
-							<input type="text" class="form-control" id="movieTitle" placeholder="Enter movie title">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="pop"><i class="fa-solid fa-xmark"></i></div>
+							<div class="modal-body">
+								<div class="input-group">
+									<input type="text" class="form-control" id="movieTitle"
+									       placeholder="Enter movie title">
+								</div>
+								<div class="star-wrap">
+									<div class="star-modal" id="star1">&#9733;</div>
+									<div class="star-modal" id="star2">&#9733;</div>
+									<div class="star-modal" id="star3">&#9733;</div>
+									<div class="star-modal" id="star4">&#9733;</div>
+									<div class="star-modal" id="star5">&#9733;</div>
+								</div>
+								<button class="btn btn-primary" type="submit" id="myBtn">Submit</button>
+							</div>
 						</div>
-						<div class="star-wrap">
-							<div class="star-modal" id="star1">&#9733;</div>
-							<div class="star-modal" id="star2">&#9733;</div>
-							<div class="star-modal" id="star3">&#9733;</div>
-							<div class="star-modal" id="star4">&#9733;</div>
-							<div class="star-modal" id="star5">&#9733;</div>
-						</div>
-						<!-- this button will break code until added properly to review stars -->
-						<button class="btn btn-primary" type="submit" id="myBtn">Submit</button>
 					</div>
 				</div>
-
-				<!--			-->
-				<!--			-->
-				<!--			-->
-				<!--			-->
-				<!--			-->
-
-
-			</form>
+			</div>
 		</div>
 		
 		<br>
