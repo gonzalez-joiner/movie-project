@@ -7,7 +7,7 @@ function movies() {
 	
 	$(".loader").toggleClass("hidden")
 	
-	setTimeout(() => {
+	// setTimeout(() => {
 	
 	fetch("https://fishy-exciting-fight.glitch.me/movies")
 		.then(response => response.json())
@@ -20,7 +20,7 @@ function movies() {
 				html += `<div class=" col-12 col-sm-6 col-md-3">`
 				html += `<div class="container card" id="${movie.id}">`;
 				
-				html += `<span class="close" id="exit-${movie.id}" value="${movie.id}"><i class="fa-solid fa-xmark"></i></span>`
+				html += `<span class=" deleteSpan close" id="exit-${movie.id}" value="${movie.id}"><i class="fa-solid fa-xmark"></i></span>`
 				html += `<img class="card-img-top" src="../assets/imgs/movie-poster.svg">`
 				
 				html += `<div class="card-body">`
@@ -33,7 +33,7 @@ function movies() {
 					totalStars += parseInt(movie.reviews[j].stars);
 				}
 				let averageStars = parseInt(Math.floor(totalStars / totalReviews));
-				console.log(averageStars);
+
 				
 				
 				// empty star <i class="fa-regular fa-star"></i>
@@ -70,19 +70,20 @@ function movies() {
 			
 			$('span').click(function (e) {
 				e.preventDefault();
-				let id = $(e.target).attr('value');
-				console.log(id);
-				deleteMovie(id);
+				let idDelete = $(this).attr('id').split('-')[1];
+				console.log(idDelete);
+				deleteMovie(idDelete);
 			});
 			
 			$('.edit-btn').click(function (e) {
 				e.preventDefault();
 				const id = $(this).attr('id').split('-')[1]; // [edit [0], 1 [1]] id = [1]
 				
-				testId = id;
+
 				
 				let editHTML = '';
-				editHTML += `<div>`;
+				editHTML += `<div id="modalWrap">`;
+				editHTML += `<div class="pop1" id="editBtn"><i class="fa-solid fa-xmark modal-x"></i></div>`;
 				// editHTML += `<p>${data[id - 1].description}</p>`;
 				editHTML += `<div class="mb-3">
 					<label  class="form-label">Movie Title</label>
@@ -113,19 +114,38 @@ function movies() {
 				editHTML += `</div>`;
 				$('#edit-div').html(editHTML);
 				$("#editModal").css("display", "block");
-				
-				
+
+				// edit close button
+				$("#editBtn").click(function (e) {
+					e.preventDefault();
+					modalEdit.style.display = "none";
+				})
+			});
+			window.onclick = function (event) {
+			if (event.target == modalEdit) {
+				modalEdit.style.display = "none";
+				}
+			}
+
+
 				$("#saveBtn").click(function (e) {
 					e.preventDefault();
 					let id = $("#hiddenId").val();
 					console.log(id)
 					editMovie(id);
-				});
+
+
+
+
 			});
-			
+
+
+
+
 			
 		}).then(() => $(".loader").toggleClass("hidden"));
-	},3000)
+	// },3000)
+
 
 
 ///////////////////////
@@ -177,8 +197,15 @@ function movies() {
 		starFive.style.color = "yellow";
 		$(".star-wrap").attr("value", "5")
 	}
-	
-	
+
+
+
+
+
+
+
+
+
 	// added modal pop up for adding a movie
 	var modal = document.getElementById("myModal");
 	var btn = document.getElementById("myBtn1");
@@ -189,7 +216,17 @@ function movies() {
 	}
 	
 	var modalSpan = document.getElementsByClassName("pop")[0];
-	
+
+
+	// content
+	var modalEdit = document.getElementById("editModal");
+
+
+
+
+
+
+
 	
 	modalSpan.onclick = function () {
 		modal.style.display = "none";
@@ -203,8 +240,8 @@ function movies() {
 }
 
 
-function deleteMovie(id) {
-	fetch("https:fishy-exciting-fight.glitch.me/movies/" + id, {
+function deleteMovie(idDelete) {
+	fetch("https:fishy-exciting-fight.glitch.me/movies/" + idDelete, {
 		method: "DELETE"
 	})
 		.then(() => fetch("https:fishy-exciting-fight.glitch.me/movies")
@@ -296,5 +333,14 @@ function editMovie(id) {
 	}).then(() => movies());
 }
 
+
+
+// window.onclick = function (event) {
+// 	console.log("clicked");
+// 	if (event.target == modalEdit) {
+// 		console.log("clicked if");
+// 		modalEdit.style.display = "none";
+// 	}
+// }
 
 
