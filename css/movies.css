@@ -110,10 +110,14 @@ body {
     top: 30%;
     opacity: 0;
 }
-
+.card:hover {
+    transform: scale(.9);
+    cursor: pointer;
+}
 .card:hover:after {
     top: 15%;
     opacity: 1;
+
 }
 
 .card-body {
@@ -150,8 +154,10 @@ body {
     font-size: 28px;
     font-weight: bold;
     position: relative;
-    bottom: 1.5rem;
-    right: 1rem;
+    bottom: 1rem;
+    right: .5rem;
+    display: flex;
+    justify-content: start;
 }
 
 .modal {
