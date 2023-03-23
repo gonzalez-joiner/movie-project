@@ -72,7 +72,7 @@ function movies() {
 			$('span').click(function (e) {
 				e.preventDefault();
 				let idDelete = $(this).attr('id').split('-')[1];
-				console.log(idDelete);
+				// console.log(idDelete);
 				deleteMovie(idDelete);
 			});
 			
@@ -132,7 +132,7 @@ function movies() {
 				$("#saveBtn").click(function (e) {
 					e.preventDefault();
 					let id = $("#hiddenId").val();
-					console.log(id)
+					// console.log(id)
 					editMovie(id);
 				});
 				
@@ -152,16 +152,14 @@ function movies() {
 			
 		}).then(() => $(".loader").toggleClass("hidden"));
 	// },3000)
-
-
-///////////////////////
-///////////////////////
-///////////////////////adding stars to modal
-	var starOne = document.getElementById('star1');
-	var starTwo = document.getElementById('star2');
-	var starThree = document.getElementById('star3');
-	var starFour = document.getElementById('star4');
-	var starFive = document.getElementById('star5');
+	
+	
+	// Adding stars to modal
+	let starOne = document.getElementById('star1');
+	let starTwo = document.getElementById('star2');
+	let starThree = document.getElementById('star3');
+	let starFour = document.getElementById('star4');
+	let starFive = document.getElementById('star5');
 	
 	starOne.onclick = function () {
 		starOne.style.color = "yellow";
@@ -206,19 +204,19 @@ function movies() {
 	
 	
 	// added modal pop up for adding a movie
-	var modal = document.getElementById("myModal");
-	var btn = document.getElementById("myBtn1");
+	let modal = document.getElementById("myModal");
+	let btn = document.getElementById("myBtn1");
 	
 	btn.onclick = function (e) {
 		e.preventDefault();
 		modal.style.display = "block";
 	}
 	
-	var modalSpan = document.getElementsByClassName("pop")[0];
+	let modalSpan = document.getElementsByClassName("pop")[0];
 	
 	
 	// content
-	var modalEdit = document.getElementById("editModal");
+	let modalEdit = document.getElementById("editModal");
 	
 	
 	modalSpan.onclick = function () {
@@ -252,12 +250,9 @@ function addMovie(title, rating) {
 		reviews: [{
 			stars: $(".star-wrap").attr("value")
 		}],
-		image: "https://cdn.glitch.global/97ab1453-f424-4aa9-bc6d-b2449a7c5714/0787261a-9df0-4f4e-bd68-d03121bf88de.image.png?v=1679524147776",
-		
+		image: "https://cdn.glitch.global/97ab1453-f424-4aa9-bc6d-b2449a7c5714/08a24d3b-f4eb-43c2-9d33-934626b4e166.image.png?v=1679579337013",
 	}
 	
-	console.log($("#movieTitle").val());
-	console.log($(".star-wrap").attr("value"));
 	console.log(newMovie);
 	
 	fetch("https:fishy-exciting-fight.glitch.me/movies", {
@@ -272,10 +267,9 @@ function addMovie(title, rating) {
 			.then(() => movies()));
 }
 
-var modal = document.getElementById("myModal");
+let modal = document.getElementById("myModal");
 $("#myBtn").click(function (e) {
 	e.preventDefault();
-	// modal.style.display = "hidden";
 	addMovie();
 	modal.style.display = "none";
 })
@@ -290,10 +284,7 @@ function editMovie(id) {
 		genre: $("#editGenre").val(),
 		rating: $("#editRating").val(),
 		description: $("#editDescription").val()
-		
 	}
-	
-	// console.log(id);
 	
 	fetch("https://fishy-exciting-fight.glitch.me/movies/" + id, {
 		method: "PATCH",
@@ -301,11 +292,11 @@ function editMovie(id) {
 		body: JSON.stringify(editedMovie)
 	}).then(response => {
 		return response.json();
-	}).then(data => console.log(data)).then(() => movies());
+	}).then(() => movies());
 }
 
-function filterMovie(e) {
-	console.log("This is from the function: " + $("#search").val())
+function filterMovieTitle(e) {
+	// console.log("This is from the function: " + $("#search").val())
 	let userInput = $("#search").val();
 	let lowerCaseInput = userInput.toLowerCase();
 	let filteredMovies = [];
@@ -326,15 +317,12 @@ function filterMovie(e) {
 	for (let movie of filteredMovies) {
 		html += `<div class=" col-12 col-sm-6 col-md-3">`
 		html += `<div class="container card" id="${movie.id}">`;
-		
 		html += `<span class=" deleteSpan close" id="exit-${movie.id}" value="${movie.id}"><i class="fa-solid fa-xmark"></i></span>`
-		
 		
 		html += `<img class="card-img-top posters" src="${movie.image}">`
 		
 		html += `<div class="card-body">`
 		html += `<h3 class="card-text fs-6">${movie.title}</h3>`
-		
 		
 		let totalReviews = movie.reviews.length;
 		let totalStars = 0;
@@ -342,7 +330,6 @@ function filterMovie(e) {
 			totalStars += parseInt(movie.reviews[j].stars);
 		}
 		let averageStars = parseInt(Math.floor(totalStars / totalReviews));
-		
 		
 		// empty star <i class="fa-regular fa-star"></i>
 		// filled star <i class="fa-solid fa-star"></i>
@@ -373,8 +360,71 @@ function filterMovie(e) {
 
 $("#search").keyup(function (e) {
 	e.preventDefault();
-	console.log($("#search").val());
-	filterMovie();
+	filterMovieTitle();
 });
 
 
+function filterMovieGenre(e) {
+	// console.log("This is from the function: " + $("#genreFilter").val())
+	let genreSelect = $("#genreFilter").val();
+	let filteredMovies = [];
+	
+	let movies = globalData;
+	
+	for (let movie of movies) {
+		if (movie.genre === genreSelect || genreSelect === "all") {
+			filteredMovies.push(movie);
+		}
+		// console.log(filteredMovies)
+	}
+	
+	let html = "";
+	
+	for (let movie of filteredMovies) {
+		html += `<div class=" col-12 col-sm-6 col-md-3">`
+		html += `<div class="container card" id="${movie.id}">`;
+		html += `<span class=" deleteSpan close" id="exit-${movie.id}" value="${movie.id}"><i class="fa-solid fa-xmark"></i></span>`
+		
+		html += `<img class="card-img-top posters" src="${movie.image}">`
+		
+		html += `<div class="card-body">`
+		html += `<h3 class="card-text fs-6">${movie.title}</h3>`
+		
+		let totalReviews = movie.reviews.length;
+		let totalStars = 0;
+		for (let j = 0; j < movie.reviews.length; j++) {
+			totalStars += parseInt(movie.reviews[j].stars);
+		}
+		let averageStars = parseInt(Math.floor(totalStars / totalReviews));
+		
+		// empty star <i class="fa-regular fa-star"></i>
+		// filled star <i class="fa-solid fa-star"></i>
+		if (averageStars === 1) {
+			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
+		} else if (averageStars === 2) {
+			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
+		} else if (averageStars === 3) {
+			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i>`
+		} else if (averageStars === 4) {
+			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i>`
+		} else if (averageStars === 5) {
+			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i>`
+		}
+		
+		html += `<div class="d-flex justify-content-between"><p>${movie.genre}</p>  <a href="#"  id="edit-${movie.id}" class="btn btn-outline-light edit-btn"><i class="fa-regular fa-pen-to-square"></i></a> </div>`
+		
+		html += `</div>`;
+		html += `</div>`;
+		html += `</div>`;
+		
+		totalReviews = 0
+		totalStars = 0
+		averageStars = 0
+	}
+	$("#movieList").html(html)
+}
+
+$("#genreFilter").change(function (e) {
+	e.preventDefault();
+	filterMovieGenre();
+})
