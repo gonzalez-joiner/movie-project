@@ -229,9 +229,15 @@ function movies() {
 							e.preventDefault();
 							addReviewM.style.display = "none";
 						})
-						
+						window.onclick = function (event) {
+							if (event.target == addReviewM) {
+								addReviewM.style.display = "none";
+							}
+						}
 						$("#reviewAdd").click(function (e) {
 							e.preventDefault();
+							addReviewM.style.display = "none";
+
 							let reviewId = contentId;
 							addingReviews(reviewId);
 						})
@@ -368,6 +374,7 @@ function deleteMovie(idDelete) {
 }
 
 function addMovie(title, rating) {
+
 	let newMovie = {
 		title: $("#movieTitle").val(),
 		director: $("#directorName").val(),
@@ -378,11 +385,13 @@ function addMovie(title, rating) {
 		duration: $("#durationName").val(),
 		description: $("#text-desc").val(),
 		reviews: [{
+			user: $("#text-username").val(),
 			stars: $(".star-wrap").attr("value"),
+			comment: $("#text-comment").val()
 		}],
 		image: "https://cdn.glitch.global/97ab1453-f424-4aa9-bc6d-b2449a7c5714/08a24d3b-f4eb-43c2-9d33-934626b4e166.image.png?v=1679579337013",
 	}
-	
+
 	console.log(newMovie);
 	
 	fetch("https:fishy-exciting-fight.glitch.me/movies", {
