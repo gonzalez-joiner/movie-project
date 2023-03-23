@@ -12,6 +12,10 @@ body {
     height: 100%;
 }
 
+.navbar {
+    background-color: cadetblue;
+}
+
 .hidden {
     display: none;
 }
@@ -110,7 +114,8 @@ body {
     font-size: 28px;
     font-weight: bold;
     position: relative;
-    bottom: .8rem;
+    bottom: .5rem;
+    left: 19rem;
 }
 
 .close:hover,
