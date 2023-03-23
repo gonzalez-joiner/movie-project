@@ -23,12 +23,12 @@ $(document).ready(function () {
 				let html = "";
 				for (let movie of data) {
 					html += `<div class="col-12 col-sm-6 col-md-4 col-lg-3">`
-					html += `<div class="container card" id="${movie.id}">`;
+					html += `<div class="container card movieCard" id="${movie.id}">`;
 					
-					html += `<span class=" deleteSpan close" id="exit-${movie.id}" value="${movie.id}"><i class="fa-solid fa-xmark"></i></span>`
+					html += `<span class=" deleteSpan close" value="${movie.id}"><i class="closeCard fa-solid fa-xmark" id="exit-${movie.id}"></i></span>`
 					
 					
-					html += `<img class="card-img-top posters" src="${movie.image}">`
+					html += `<img class="card-img-top posters" id="img-${movie.id}" src="${movie.image}">`
 					
 					html += `<div class="card-body">`
 					html += `<h3 class="card-text fs-5 text-decoration-underline">${movie.title}</h3>`
@@ -74,7 +74,7 @@ $(document).ready(function () {
 				
 				$('#movieList').html(html);
 				
-				$('span').click(function (e) {
+				$('.closeCard').click(function (e) {
 					e.preventDefault();
 					let idDelete = $(this).attr('id').split('-')[1];
 					// console.log(idDelete);
@@ -154,6 +154,38 @@ $(document).ready(function () {
 					}
 				}
 				
+				// ~~~~~~~~~
+				$('.card-img-top').click(function (e) {
+					e.preventDefault();
+					const contentId = $(this).attr('id').split('-')[1];
+					console.log(contentId);
+					
+					let contentHTML = '';
+					contentHTML += `<div class="pop1" id="contentBtn"><i class="fa-solid fa-xmark modal-x"></i></div>`;
+					contentHTML += `<div id="modalWrap" class="card contentCard">`;
+					contentHTML += `<div class="card-body">`
+					contentHTML += `<h1 class="card-title mb-3">${data[contentId - 1].title}</h1>`
+					contentHTML += `<h5>${data[contentId - 1].year} | ${data[contentId - 1].duration}</h5> <h3 class="card-subtitle mb-2">${data[contentId -1].rating}</h3>`
+					contentHTML += `<h3>${data[contentId - 1].genre}</h3><h4 class="card-text">${data[contentId - 1].description}</h4>`
+					contentHTML += `</div>`
+					
+					
+					contentHTML += `</div>`;
+					$('#content-div').html(contentHTML);
+					$("#contentModal").css("display", "block");
+					
+					
+					$("#contentBtn").click(function (e) {
+						e.preventDefault();
+						modalContent.style.display = "none";
+					})
+					window.onclick = function (event) {
+						if (event.target == modalContent) {
+							modalContent.style.display = "none";
+						}
+					}
+				})
+				// 	~~~~~~~~~~~~~~~~
 				
 			}).then(() => $(".loader").toggleClass("hidden"));
 		// },3000)
@@ -223,6 +255,8 @@ $(document).ready(function () {
 		// content
 		let modalEdit = document.getElementById("editModal");
 		
+		let modalContent = document.getElementById("contentModal");
+		
 		
 		modalSpan.onclick = function () {
 			modal.style.display = "none";
@@ -252,8 +286,10 @@ $(document).ready(function () {
 			genre: $("#genreSelect").val(),
 			rating: $("#ratingSelect").val(),
 			avgStars: "0",
+			year: "",
+			duration: "",
 			reviews: [{
-				stars: $(".star-wrap").attr("value")
+				stars: $(".star-wrap").attr("value"),
 			}],
 			image: "https://cdn.glitch.global/97ab1453-f424-4aa9-bc6d-b2449a7c5714/08a24d3b-f4eb-43c2-9d33-934626b4e166.image.png?v=1679579337013",
 		}
@@ -321,7 +357,7 @@ $(document).ready(function () {
 		
 		for (let movie of filteredMovies) {
 			html += `<div class=" col-12 col-sm-6 col-md-3">`
-			html += `<div class="container card" id="${movie.id}">`;
+			html += `<div class="container card movieCard" id="${movie.id}">`;
 			html += `<span class=" deleteSpan close" id="exit-${movie.id}" value="${movie.id}"><i class="fa-solid fa-xmark"></i></span>`
 			
 			html += `<img class="card-img-top posters" src="${movie.image}">`
@@ -387,7 +423,7 @@ $(document).ready(function () {
 		
 		for (let movie of filteredMovies) {
 			html += `<div class=" col-12 col-sm-6 col-md-3">`
-			html += `<div class="container card" id="${movie.id}">`;
+			html += `<div class="container card movieCard" id="${movie.id}">`;
 			html += `<span class=" deleteSpan close" id="exit-${movie.id}" value="${movie.id}"><i class="fa-solid fa-xmark"></i></span>`
 			
 			html += `<img class="card-img-top posters" src="${movie.image}">`
