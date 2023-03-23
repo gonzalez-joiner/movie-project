@@ -31,7 +31,7 @@ $(document).ready(function () {
 					html += `<img class="card-img-top posters" src="${movie.image}">`
 					
 					html += `<div class="card-body">`
-					html += `<h3 class="card-text fs-6">${movie.title}</h3>`
+					html += `<h3 class="card-text fs-5 text-decoration-underline">${movie.title}</h3>`
 					
 					
 					let totalReviews = movie.reviews.length;

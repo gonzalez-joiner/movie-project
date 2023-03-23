@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu+Mono&display=swap');
+/*font-family: 'Bebas Neue', cursive;*/
+/*font-family: 'Ubuntu Mono', monospace;*/
+
+
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Ubuntu Mono', monospace;
 }
 
 body {
@@ -21,7 +27,15 @@ body {
 .hidden {
     display: none;
 }
-
+.banner {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 5rem;
+    color: #7b68ee;
+    margin-top: 20px;
+}
+.loader {
+    margin-top: 300px;
+}
 .lds-ring {
     display: inline-block;
     position: relative;
@@ -181,7 +195,7 @@ body {
 .scrolly-polly {
     overflow:auto;
     height: 680px;
-    margin-top: 20px;
+    margin-top: 3px;
 
 }
 
