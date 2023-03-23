@@ -35,7 +35,6 @@ function movies() {
 					totalStars += parseInt(movie.reviews[j].stars);
 				}
 				let averageStars = parseInt(Math.floor(totalStars / totalReviews));
-
 				
 				
 				// empty star <i class="fa-regular fa-star"></i>
@@ -81,7 +80,6 @@ function movies() {
 				e.preventDefault();
 				const id = $(this).attr('id').split('-')[1]; // [edit [0], 1 [1]] id = [1]
 				
-
 				
 				let editHTML = '';
 				editHTML += `<div id="modalWrap">`;
@@ -116,7 +114,7 @@ function movies() {
 				editHTML += `</div>`;
 				$('#edit-div').html(editHTML);
 				$("#editModal").css("display", "block");
-
+				
 				// edit close button
 				$("#editBtn").click(function (e) {
 					e.preventDefault();
@@ -124,30 +122,24 @@ function movies() {
 				})
 			});
 			window.onclick = function (event) {
-			if (event.target == modalEdit) {
-				modalEdit.style.display = "none";
+				if (event.target == modalEdit) {
+					modalEdit.style.display = "none";
 				}
 			}
-
-
-				$("#saveBtn").click(function (e) {
-					e.preventDefault();
-					let id = $("#hiddenId").val();
-					console.log(id)
-					editMovie(id);
-
-
-
-
+			
+			
+			$("#saveBtn").click(function (e) {
+				e.preventDefault();
+				let id = $("#hiddenId").val();
+				console.log(id)
+				editMovie(id);
+				
+				
 			});
-
-
-
-
+			
 			
 		}).then(() => $(".loader").toggleClass("hidden"));
 	// },3000)
-
 
 
 ///////////////////////
@@ -199,15 +191,8 @@ function movies() {
 		starFive.style.color = "yellow";
 		$(".star-wrap").attr("value", "5")
 	}
-
-
-
-
-
-
-
-
-
+	
+	
 	// added modal pop up for adding a movie
 	var modal = document.getElementById("myModal");
 	var btn = document.getElementById("myBtn1");
@@ -218,17 +203,11 @@ function movies() {
 	}
 	
 	var modalSpan = document.getElementsByClassName("pop")[0];
-
-
+	
+	
 	// content
 	var modalEdit = document.getElementById("editModal");
-
-
-
-
-
-
-
+	
 	
 	modalSpan.onclick = function () {
 		modal.style.display = "none";
@@ -254,14 +233,14 @@ function deleteMovie(idDelete) {
 function addMovie(title, rating) {
 	let newMovie = {
 		title: $("#movieTitle").val(),
-		director : $("#directorName").val(),
+		director: $("#directorName").val(),
 		genre: $("#genreSelect").val(),
-		rating : $("#ratingSelect").val(),
+		rating: $("#ratingSelect").val(),
 		avgStars: "0",
 		reviews: [{
 			stars: $(".star-wrap").attr("value")
 		}],
-		image : "https://cdn.glitch.global/97ab1453-f424-4aa9-bc6d-b2449a7c5714/0787261a-9df0-4f4e-bd68-d03121bf88de.image.png?v=1679524147776",
+		image: "https://cdn.glitch.global/97ab1453-f424-4aa9-bc6d-b2449a7c5714/0787261a-9df0-4f4e-bd68-d03121bf88de.image.png?v=1679524147776",
 		
 	}
 	
@@ -295,7 +274,7 @@ movies();
 function editMovie(id) {
 	let editedMovie = {
 		title: $("#editMovie").val(),
-		director : $("#editDirector").val(),
+		director: $("#editDirector").val(),
 		genre: $("#editGenre").val()
 	}
 	
@@ -312,13 +291,137 @@ function editMovie(id) {
 }
 
 
-
-// window.onclick = function (event) {
-// 	console.log("clicked");
-// 	if (event.target == modalEdit) {
-// 		console.log("clicked if");
-// 		modalEdit.style.display = "none";
+// 	let html = "";
+// 	for (let movie of filteredMovies) {
+// 		html += `<div class=" col-12 col-sm-6 col-md-3">`
+// 		html += `<div class="container card" id="${movie.id}">`;
+//
+// 		html += `<span class=" deleteSpan close" id="exit-${movie.id}" value="${movie.id}"><i class="fa-solid fa-xmark"></i></span>`
+//
+//
+// 		html += `<img class="card-img-top posters" src="${movie.image}">`
+//
+// 		html += `<div class="card-body">`
+// 		html += `<h3 class="card-text fs-6">${movie.title}</h3>`
+//
+//
+// 		let totalReviews = movie.reviews.length;
+// 		let totalStars = 0;
+// 		for (let j = 0; j < movie.reviews.length; j++) {
+// 			totalStars += parseInt(movie.reviews[j].stars);
+// 		}
+// 		let averageStars = parseInt(Math.floor(totalStars / totalReviews));
+//
+//
+//
+// 		// empty star <i class="fa-regular fa-star"></i>
+// 		// filled star <i class="fa-solid fa-star"></i>
+// 		if (averageStars === 1) {
+// 			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
+// 		} else if (averageStars === 2) {
+// 			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
+// 		} else if (averageStars === 3) {
+// 			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i>`
+// 		} else if (averageStars === 4) {
+// 			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i>`
+// 		} else if (averageStars === 5) {
+// 			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i>`
+// 		}
+//
+//
+// 		// html += `<p class="card-text">Rating: ${averageStars}</p>`
+//
+//
+// 		html += `<div class="d-flex justify-content-between"><p>${movie.genre}</p>  <a href="#"  id="edit-${movie.id}" class="btn btn-outline-light edit-btn"><i class="fa-regular fa-pen-to-square"></i></a> </div>`
+//
+// 		// html += `<p class="card-text">Director: ${movie.director}</p>`
+// 		html += `</div>`;
+// 		html += `</div>`;
+// 		html += `</div>`;
+//
+// 		totalReviews = 0
+// 		totalStars = 0
+// 		averageStars = 0
 // 	}
 // }
+
+
+function filterMovie(e) {
+	console.log("This is from the function: " + $("#search").val())
+	let userInput = $("#search").val();
+	let lowerCaseInput = userInput.toLowerCase();
+	let filteredMovies = [];
+	
+	let movies = globalData;
+	
+	for (let movie of movies) {
+		let title = movie.title;
+		
+		if (title.toLowerCase().indexOf(lowerCaseInput) > -1) {
+			filteredMovies.push(movie);
+		}
+	}
+	console.log(filteredMovies);
+	
+	let html = "";
+	
+	for (let movie of filteredMovies) {
+		html += `<div class=" col-12 col-sm-6 col-md-3">`
+		html += `<div class="container card" id="${movie.id}">`;
+		
+		html += `<span class=" deleteSpan close" id="exit-${movie.id}" value="${movie.id}"><i class="fa-solid fa-xmark"></i></span>`
+		
+		
+		html += `<img class="card-img-top posters" src="${movie.image}">`
+		
+		html += `<div class="card-body">`
+		html += `<h3 class="card-text fs-6">${movie.title}</h3>`
+		
+		
+		let totalReviews = movie.reviews.length;
+		let totalStars = 0;
+		for (let j = 0; j < movie.reviews.length; j++) {
+			totalStars += parseInt(movie.reviews[j].stars);
+		}
+		let averageStars = parseInt(Math.floor(totalStars / totalReviews));
+		
+		
+		// empty star <i class="fa-regular fa-star"></i>
+		// filled star <i class="fa-solid fa-star"></i>
+		if (averageStars === 1) {
+			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
+		} else if (averageStars === 2) {
+			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
+		} else if (averageStars === 3) {
+			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i>`
+		} else if (averageStars === 4) {
+			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i>`
+		} else if (averageStars === 5) {
+			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i>`
+		}
+		
+		
+		// html += `<p class="card-text">Rating: ${averageStars}</p>`
+		
+		
+		html += `<div class="d-flex justify-content-between"><p>${movie.genre}</p>  <a href="#"  id="edit-${movie.id}" class="btn btn-outline-light edit-btn"><i class="fa-regular fa-pen-to-square"></i></a> </div>`
+		
+		// html += `<p class="card-text">Director: ${movie.director}</p>`
+		html += `</div>`;
+		html += `</div>`;
+		html += `</div>`;
+		
+		totalReviews = 0
+		totalStars = 0
+		averageStars = 0
+	}
+	$("#movieList").html(html)
+}
+
+$("#search").keyup(function (e) {
+	e.preventDefault();
+	console.log($("#search").val());
+	filterMovie();
+});
 
 
