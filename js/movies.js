@@ -188,9 +188,93 @@ $(document).ready(function () {
 							modalContent.style.display = "none";
 						}
 					}
+					// 	~~~~~~~review modal~~~~~~~~~
+					$("#reviewCounter").click(function (e) {
+						e.preventDefault();
+
+						let reviewHTML = '';
+						reviewHTML += `<div class="pop1" id="reviewBtn"><i class="fa-solid fa-xmark modal-x"></i></div>`;
+						for (let i = 0; i < data[contentId - 1].reviews.length; i++) {
+							reviewHTML += `<div>`
+							reviewHTML += `<p class="mb-1">${data[contentId - 1].reviews[i].user}: ${data[contentId - 1].reviews[i].stars}/5 Stars</p>`
+							reviewHTML += `<p>Comment: ${data[contentId - 1].reviews[i].comment}</p><hr>`
+
+
+
+							reviewHTML += `</div>`
+
+						}
+						reviewHTML += `<a href="#" id="addReview">Add Review</a>`
+							$('#review-div').html(reviewHTML);
+						modalContent.style.display = "none";
+						reviewM.style.display  = "block";
+
+
+						$("#reviewBtn").click(function (e) {
+							e.preventDefault();
+							reviewM.style.display = "none";
+						})
+						window.onclick = function (event) {
+							if (event.target == reviewM) {
+								reviewM.style.display = "none";
+							}
+						}
+
+							// 	~~~~~~~review modal HTML INJECTION~~~~~~~~~
+						$("#addReview").click(function (e) {
+							e.preventDefault();
+
+							let addReviewHTML = '';
+
+							addReviewHTML += `<div>`
+							addReviewHTML += `<div class="pop1" id="addReviewBtn"><i class="fa-solid fa-xmark modal-x"></i></div>`;
+							addReviewHTML += `<div class="input-group mb-2"><input type="text" class="form-control" id="UserName" placeholder="Username:"></div>`
+							addReviewHTML += `<div class="input-group mb-2"><textarea type="text" class="form-control" id="commentName" placeholder="Comment:"></textarea></div>`
+
+
+
+
+							addReviewHTML += `</div>`
+
+
+
+							$('#addReview-div').html(addReviewHTML);
+							reviewM.style.display = "none";
+							addReviewM.style.display  = "block";
+
+							$("#addReviewBtn").click(function (e) {
+								e.preventDefault();
+								addReviewM.style.display = "none";
+							})
+						})
+
+						window.onclick = function (event) {
+							if (event.target == addReviewM) {
+								addReviewM.style.display = "none";
+							}
+						}
+					})
+
+
+
+
+
+
+
+
+
+
+
 				})
-				// 	~~~~~~~~~~~~~~~~
-				
+
+
+
+
+
+
+
+
+
 			}).then(() => $(".loader").toggleClass("hidden"));
 		// },3000)
 		
@@ -260,6 +344,10 @@ $(document).ready(function () {
 		let modalEdit = document.getElementById("editModal");
 		
 		let modalContent = document.getElementById("contentModal");
+
+		let reviewM = document.getElementById("reviewModal")
+		let addReviewM = document.getElementById("addReviewModal")
+
 		
 		
 		modalSpan.onclick = function () {
