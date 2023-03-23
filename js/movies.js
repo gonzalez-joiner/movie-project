@@ -92,40 +92,51 @@ function movies() {
 				editHTML +=
 					`<div class="mb-3">
 					<label class="form-label">director</label>
-					<input class="form-control" type="text"  id="editDirector" value="${data[id - 1].director}">
+					<input class="form-control" type="text"  id="editDirector" value="${data[id - 1].director}" disabled>
 				</div>`;
 				editHTML +=
 					`<div class="mb-3">
-					<label class="form-label">rating</label>
-					<input class="form-control" type="text" id="editRating" value="${data[id - 1].rating}">
+					<label class="form-label">Rating: ${data[id - 1].rating} </label>
+					<select id="editRating" class="form-select">
+					<option selected value="${data[id - 1].rating}"></option>
+					<option value="G">G</option>
+					<option value="PG">PG</option>
+					<option value="PG-13">PG-13</option>
+					<option value="R">R</option>
+					</select>
 				</div>`;
 				editHTML +=
 					`<div class="mb-3">
-					<label class="form-label">genre</label>
-					<input class="form-control form-control-sm" id="editGenre" type="text" value="${data[id - 1].genre}">
+					<label class="form-label">Genre: ${data[id - 1].genre}</label>
+					<select id="editGenre" class="form-select">
+					<option selected value="${data[id - 1].genre}"></option>
+					<option value="action">Action</option>
+					<option value="comedy">Comedy</option>
+					<option value="horror">Horror</option>
+					<option value="thriller">Thriller</option>
+					<option value="romance">Romance</option>
+					</select>
 				</div>`;
 				
 				editHTML += `<div>
 					<label class="form-label">Description</label>
-					<textarea class="form-control form-control-lg " id="editDescription" type="text" placeholder="${data[id - 1].description}" value ="${data[id - 1].description}"></textarea>
+					<textarea class="form-control form-control-lg " id="editDescription" type="text" placeholder="${data[id - 1].description}" value="${data[id - 1].description}"></textarea>
 				</div>`;
 				editHTML += `<input type="hidden" id="hiddenId" value="${data[id - 1].id}">
-<button class="btn btn-primary" type="submit" id="saveBtn">Save</button>`;
+					<button class="btn btn-primary" type="submit" id="saveBtn">Save</button>`;
 				editHTML += `</div>`;
 				$('#edit-div').html(editHTML);
 				$("#editModal").css("display", "block");
-
-
-
+				
+				
 				$("#saveBtn").click(function (e) {
 					e.preventDefault();
 					let id = $("#hiddenId").val();
 					console.log(id)
 					editMovie(id);
 				});
-
-
-
+				
+				
 				// edit close button
 				$("#editBtn").click(function (e) {
 					e.preventDefault();
@@ -137,7 +148,7 @@ function movies() {
 					modalEdit.style.display = "none";
 				}
 			}
-
+			
 			
 		}).then(() => $(".loader").toggleClass("hidden"));
 	// },3000)
@@ -275,11 +286,11 @@ movies();
 function editMovie(id) {
 	let editedMovie = {
 		title: $("#editMovie").val(),
-		director : $("#editDirector").val(),
+		director: $("#editDirector").val(),
 		genre: $("#editGenre").val(),
 		rating: $("#editRating").val(),
 		description: $("#editDescription").val()
-
+		
 	}
 	
 	// console.log(id);
@@ -292,62 +303,6 @@ function editMovie(id) {
 		return response.json();
 	}).then(data => console.log(data)).then(() => movies());
 }
-
-
-// 	let html = "";
-// 	for (let movie of filteredMovies) {
-// 		html += `<div class=" col-12 col-sm-6 col-md-3">`
-// 		html += `<div class="container card" id="${movie.id}">`;
-//
-// 		html += `<span class=" deleteSpan close" id="exit-${movie.id}" value="${movie.id}"><i class="fa-solid fa-xmark"></i></span>`
-//
-//
-// 		html += `<img class="card-img-top posters" src="${movie.image}">`
-//
-// 		html += `<div class="card-body">`
-// 		html += `<h3 class="card-text fs-6">${movie.title}</h3>`
-//
-//
-// 		let totalReviews = movie.reviews.length;
-// 		let totalStars = 0;
-// 		for (let j = 0; j < movie.reviews.length; j++) {
-// 			totalStars += parseInt(movie.reviews[j].stars);
-// 		}
-// 		let averageStars = parseInt(Math.floor(totalStars / totalReviews));
-//
-//
-//
-// 		// empty star <i class="fa-regular fa-star"></i>
-// 		// filled star <i class="fa-solid fa-star"></i>
-// 		if (averageStars === 1) {
-// 			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
-// 		} else if (averageStars === 2) {
-// 			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>`
-// 		} else if (averageStars === 3) {
-// 			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i>`
-// 		} else if (averageStars === 4) {
-// 			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-regular fa-star"></i>`
-// 		} else if (averageStars === 5) {
-// 			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i>`
-// 		}
-//
-//
-// 		// html += `<p class="card-text">Rating: ${averageStars}</p>`
-//
-//
-// 		html += `<div class="d-flex justify-content-between"><p>${movie.genre}</p>  <a href="#"  id="edit-${movie.id}" class="btn btn-outline-light edit-btn"><i class="fa-regular fa-pen-to-square"></i></a> </div>`
-//
-// 		// html += `<p class="card-text">Director: ${movie.director}</p>`
-// 		html += `</div>`;
-// 		html += `</div>`;
-// 		html += `</div>`;
-//
-// 		totalReviews = 0
-// 		totalStars = 0
-// 		averageStars = 0
-// 	}
-// }
-
 
 function filterMovie(e) {
 	console.log("This is from the function: " + $("#search").val())
@@ -364,7 +319,7 @@ function filterMovie(e) {
 			filteredMovies.push(movie);
 		}
 	}
-	console.log(filteredMovies);
+	// console.log(filteredMovies);
 	
 	let html = "";
 	
@@ -403,13 +358,8 @@ function filterMovie(e) {
 			html += `<p class="card-text"><i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i> <i class="fa-solid fa-star fa-beat-fade" style="color: #fbff00;"></i>`
 		}
 		
-		
-		// html += `<p class="card-text">Rating: ${averageStars}</p>`
-		
-		
 		html += `<div class="d-flex justify-content-between"><p>${movie.genre}</p>  <a href="#"  id="edit-${movie.id}" class="btn btn-outline-light edit-btn"><i class="fa-regular fa-pen-to-square"></i></a> </div>`
 		
-		// html += `<p class="card-text">Director: ${movie.director}</p>`
 		html += `</div>`;
 		html += `</div>`;
 		html += `</div>`;
