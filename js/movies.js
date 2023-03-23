@@ -125,10 +125,10 @@ $(document).ready(function () {
 					
 					editHTML += `<div>
 					<label class="form-label">Description</label>
-					<textarea class="form-control form-control-lg " id="editDescription" type="text">${data[id - 1].description}</textarea>
+					<textarea class="form-control form-control-lg mb-4" rows="3" id="editDescription" type="text">${data[id - 1].description}</textarea>
 				</div>`;
 					editHTML += `<input type="hidden" id="hiddenId" value="${data[id - 1].id}">
-					<button class="btn btn-primary" type="submit" id="saveBtn">Save</button>`;
+					<button class="btn btnColorScheme" type="submit" id="saveBtn">Save</button>`;
 					editHTML += `</div>`;
 					$('#edit-div').html(editHTML);
 					$("#editModal").css("display", "block");
