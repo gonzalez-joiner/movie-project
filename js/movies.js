@@ -167,7 +167,11 @@ $(document).ready(function () {
 					contentHTML += `<h1 class="card-title mb-3">${data[contentId - 1].title}</h1>`
 					contentHTML += `<h5>${data[contentId - 1].year} | ${data[contentId - 1].duration}</h5> <h3 class="card-subtitle mb-2">${data[contentId -1].rating}</h3>`
 					contentHTML += `<h3>${data[contentId - 1].genre}</h3><h4 class="card-text">${data[contentId - 1].description}</h4>`
+					contentHTML += `<div>`
+					contentHTML += `<a href="#" id="reviewCounter">Reviews: ${data[contentId - 1].reviews.length}</a>`
 					contentHTML += `</div>`
+					contentHTML += `</div>`
+
 					
 					
 					contentHTML += `</div>`;
@@ -286,8 +290,9 @@ $(document).ready(function () {
 			genre: $("#genreSelect").val(),
 			rating: $("#ratingSelect").val(),
 			avgStars: "0",
-			year: "",
-			duration: "",
+			year: $("#yearName").val(),
+			duration: $("#durationName").val(),
+			description: $("#text-desc").val(),
 			reviews: [{
 				stars: $(".star-wrap").attr("value"),
 			}],

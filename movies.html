@@ -84,7 +84,16 @@
 										<input type="text" class="form-control" id="directorName"
 										       placeholder="Director:">
 									</div>
-									
+
+									<div class="input-group mb-2">
+										<input type="text" class="form-control" id="yearName"
+											   placeholder="Year:">
+									</div>
+									<div class="input-group mb-2">
+										<input type="text" class="form-control" id="durationName"
+											   placeholder="Duration:">
+									</div>
+
 									<select class="form-select mb-2" id="genreSelect">
 										<option selected>Choose a genre</option>
 										<option value="horror">Horror</option>
@@ -101,7 +110,9 @@
 										<option value="PG-13">PG-13</option>
 										<option value="R">R</option>
 									</select>
-									
+
+
+
 									<div class="star-wrap">
 										<div class="star-modal" id="star1">&#9733;</div>
 										<div class="star-modal" id="star2">&#9733;</div>
@@ -109,6 +120,11 @@
 										<div class="star-modal" id="star4">&#9733;</div>
 										<div class="star-modal" id="star5">&#9733;</div>
 									</div>
+
+									<div class="review-text-wrap">
+                                        <textarea class="review-text form-control my-3" id="text-desc" placeholder="Description: "></textarea>
+									</div>
+
 									<button class="btn btnColorScheme" type="submit" id="myBtn">Submit</button>
 								</div>
 							</div>
