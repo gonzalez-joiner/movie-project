@@ -22,7 +22,7 @@ $(document).ready(function () {
 				console.log(data);
 				let html = "";
 				for (let movie of data) {
-					html += `<div class=" col-12 col-sm-6 col-md-4 col-lg-3">`
+					html += `<div class="col-12 col-sm-6 col-md-4 col-lg-3">`
 					html += `<div class="container card" id="${movie.id}">`;
 					
 					html += `<span class=" deleteSpan close" id="exit-${movie.id}" value="${movie.id}"><i class="fa-solid fa-xmark"></i></span>`
@@ -125,7 +125,7 @@ $(document).ready(function () {
 					
 					editHTML += `<div>
 					<label class="form-label">Description</label>
-					<textarea class="form-control form-control-lg " id="editDescription" type="text" placeholder="${data[id - 1].description}" value="${data[id - 1].description}"></textarea>
+					<textarea class="form-control form-control-lg " id="editDescription" type="text">${data[id - 1].description}</textarea>
 				</div>`;
 					editHTML += `<input type="hidden" id="hiddenId" value="${data[id - 1].id}">
 					<button class="btn btn-primary" type="submit" id="saveBtn">Save</button>`;
@@ -137,8 +137,8 @@ $(document).ready(function () {
 					$("#saveBtn").click(function (e) {
 						e.preventDefault();
 						let id = $("#hiddenId").val();
-						// console.log(id)
 						editMovie(id);
+						modalEdit.style.display = "none";
 					});
 					
 					
