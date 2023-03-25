@@ -146,7 +146,7 @@
 					$('.card-img-top').click(function (e) {
 						e.preventDefault();
 						const contentId = $(this).attr('id').split('-')[1];
-						console.log(contentId);
+						// console.log(contentId);
 						
 						let contentHTML = '';
 						contentHTML += `<div id="modalWrap" class="card contentCard">`;
@@ -181,7 +181,7 @@
 							reviewHTML += `<div class="pop1" id="reviewBtn"><i class="fa-solid fa-xmark modal-x"></i></div>`;
 							reviewHTML += `<div class="card-body">`
 							for (let i = 0; i < data[contentId - 1].reviews.length; i++) {
-								reviewHTML += `<div class="ps-3">`
+								reviewHTML += `<div class="ps-4">`
 								reviewHTML += `<p class="mb-1">${data[contentId - 1].reviews[i].user}: ${data[contentId - 1].reviews[i].stars}/5 Stars</p>`
 								reviewHTML += `<p>Comment: ${data[contentId - 1].reviews[i].comment}</p>`
 								reviewHTML += `</div>`
