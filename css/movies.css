@@ -11,12 +11,7 @@
 
 body {
     background-color: black;
-    /*overflow: hidden;*/
     width: 100%;
-}
-
-.body {
-    /*height: 100svh;*/
     height: 100%;
 }
 
@@ -28,15 +23,18 @@ body {
 .hidden {
     display: none;
 }
+
 .banner {
     font-family: 'Bebas Neue', cursive;
     font-size: 5rem;
     color: #7b68ee;
     margin-top: 20px;
 }
+
 .loader {
     margin-top: 200px;
 }
+
 .lds-ring {
     display: inline-block;
     position: relative;
@@ -79,15 +77,12 @@ body {
 }
 
 .movieCard {
-    /*border: 1px solid red*/
     position: relative;
     background-color: rgb(52, 52, 52);
     border: 1px solid rgb(255 255 255/ 5%);
     border-radius: 1.5rem;
     padding: 1rem;
-    /*height: 650px!important;*/
     color: white;
-
 }
 
 .movieCard:after {
@@ -99,7 +94,7 @@ body {
     top: 30%;
     transition: top, opacity;
     transition-duration: 600ms;
-    transition-timing-function: ease;
+    /*transition-timing-function: ease;*/
     background: linear-gradient(
             transparent,
             mediumslateblue,
@@ -112,11 +107,13 @@ body {
     top: 30%;
     opacity: 0;
 }
+
 .movieCard:hover {
     transition: all 200ms ease-in;
     transform: scale(.9);
     cursor: pointer;
 }
+
 .movieCard:hover:after {
     top: 15%;
     opacity: 1;
@@ -127,7 +124,7 @@ body {
     color: rgb(250 249 246);
 }
 
-.contentCard {
+.contentCard, .editCard, .reviewCard, .addReviewCard, .addCard {
     background-color: rgb(52, 52, 52);
     color: white;
 }
@@ -162,8 +159,8 @@ body {
     font-size: 28px;
     font-weight: bold;
     position: relative;
-    bottom: 1rem;
-    right: .5rem;
+    bottom: -1rem;
+    right: -1rem;
     display: flex;
     justify-content: start;
 }
@@ -206,18 +203,23 @@ body {
     height: 450px !important;
 }
 
-/*.scrolly-polly {*/
-/*    overflow:auto;*/
-/*    height: 680px;*/
-/*    margin-top: 3px;*/
-
-/*}*/
-
 .btnColorScheme {
     background-color: #7b68ee;
     color: white;
 }
+
 .btnColorScheme:hover {
     background: mediumseagreen;
+}
 
+.pop1 {
+    color: black;
+    float: left;
+    font-size: 28px;
+    font-weight: bold;
+    position: relative;
+    bottom: -1rem;
+    right: -1rem;
+    display: flex;
+    justify-content: start;
 }
