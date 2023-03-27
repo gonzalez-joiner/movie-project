@@ -80,12 +80,12 @@
 						editHTML += `<div class="card-body">`
 						editHTML += `<div class="mb-3">
 					<label  class="form-label">Movie Title</label>
-					<input class="form-control" type="text" id="editMovie" value="${data[id - 1].title}" disabled>
+					<input class="form-control" type="text" id="editMovie" value="${data[id - 1].title}">
 				</div>`;
 						editHTML +=
 							`<div class="mb-3">
 					<label class="form-label">director</label>
-					<input class="form-control" type="text"  id="editDirector" value="${data[id - 1].director}" disabled>
+					<input class="form-control" type="text"  id="editDirector" value="${data[id - 1].director}">
 				</div>`;
 						editHTML +=
 							`<div class="mb-3">
